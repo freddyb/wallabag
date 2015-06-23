@@ -676,9 +676,8 @@ class Poche
             $user = $this->store->login($login, Tools::encodeString($password . $login), $isauthenticated);
             if ($user != array()) {
                 # Save login into Session
-                $longlastingsession = isset($_POST['longlastingsession']);
                 $passwordTest = ($isauthenticated) ? $user['password'] : Tools::encodeString($password . $login);
-                Session::login($user['username'], $user['password'], $login, $passwordTest, $longlastingsession, array('poche_user' => new User($user)));
+                Session::login($user['username'], $user['password'], $login, $passwordTest, true, array('poche_user' => new User($user)));
 
                 # reload l10n
                 $language = $user['config']['language'];
